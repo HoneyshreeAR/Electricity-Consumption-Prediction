@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Prediction</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>⚡ Electricity Consumption Prediction</h1>
+
+    <p>Predict your electricity consumption using Machine Learning</p>
+
+    <form method="POST">
+
+        <label>Previous Electricity Usage (kWh)</label>
+
+        <input type="number"
+        name="previous_usage"
+        min="0"
+        step="0.01"
+        placeholder="Enter previous usage"
+        required>
+
+
+        <label>Select Appliance</label>
+
+        <select name="appliance" required>
+
+            <option value="">Select Appliance</option>
+
+            <option value="Fan">Fan</option>
+
+            <option value="Air Conditioner">Air Conditioner</option>
+
+            <option value="Television">Television</option>
+
+            <option value="Refrigerator">Refrigerator</option>
+
+            <option value="Washing Machine">Washing Machine</option>
+
+            <option value="LED Bulb">LED Bulb</option>
+
+            <option value="Laptop">Laptop</option>
+
+            <option value="Water Heater">Water Heater</option>
+
+        </select>
+
+
+        <label>Usage Time (Hours)</label>
+
+        <input type="number"
+        name="usage_hours"
+        min="0.01"
+        max="24"
+        step="0.01"
+        placeholder="Enter usage hours"
+        required>
+
+
+        <button type="submit">
+    Predict Consumption
+</button>
+
+<button type="reset" class="reset-btn"
+        onclick="document.getElementById('result').style.display='none'">
+    Reset
+</button>
+    </form>
+
+
+    {% if prediction is not none %}
+
+    <div class="result" id="result">
+
+        <h2>Predicted Electricity Consumption</h2>
+
+        <h1>{{ prediction }} kWh</h1>
+
+    </div>
+
+    {% endif %}
+
+
+    {% if error %}
+
+    <p class="error">{{ error }}</p>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
